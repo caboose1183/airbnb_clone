@@ -5,10 +5,14 @@ import Banner from "@/components/Banner";
 
 // data should be fetched from API, but copied json from example
 import { exploreData } from "../../public/exploreData";
+import { cardsData } from "../../public/cardsData";
+import SmallCard from "@/components/SmallCard";
+import MediumCard from "@/components/MediumCard";
+import LargeCard from "@/components/LargeCard";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ exploreData }) {
+export default function Home({ exploreData, cardsData }) {
   return (
     <main className="">
       <Head>
@@ -24,10 +28,34 @@ export default function Home({ exploreData }) {
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
           {/* pull data from server */}
-          {exploreData?.map((item) => (
-            <h1 key={item.location}>{item.location}</h1>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {exploreData?.map(({ img, distance, location }) => (
+              <SmallCard
+                key={img}
+                img={img}
+                distance={distance}
+                location={location}
+              />
+            ))}
+          </div>
         </section>
+
+        <section>
+          <h2 className="text-4xl font-semibold py-8">Live anywhere</h2>
+
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3">
+            {cardsData?.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
+            ))}
+          </div>
+        </section>
+
+        <LargeCard
+          img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Wishlists curated by Airbnb."
+          buttonText="Get Inspired"
+        />
       </div>
     </main>
   );
@@ -37,6 +65,7 @@ export async function getStaticProps() {
   return {
     props: {
       exploreData,
+      cardsData,
     },
   };
 }

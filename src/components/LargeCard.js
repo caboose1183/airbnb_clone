@@ -19,6 +19,7 @@ function LargeCard({ img, title, description, buttonText }) {
 
         <button className="text-sm text-white bg-gray-900 px-4 py-2 rounded-lg mt-5">
           {buttonText}
+          {buttonText}
         </button>
       </div>
     </section>

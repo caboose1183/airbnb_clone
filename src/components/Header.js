@@ -15,7 +15,7 @@ import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
-function Header() {
+function Header({placeholder}) {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -42,7 +42,7 @@ function Header() {
     router.push({
       pathname: "/search",
       query: {
-        locations: searchInput,
+        location: searchInput,
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
         numberOfGuests: numberOfGuests
@@ -69,7 +69,7 @@ function Header() {
       <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm">
         <input
           type="text"
-          placeholder="Start your search"
+          placeholder={placeholder || "Start your search"}
           value={searchInput}
           onChange={(event) => setSearchInput(event.target.value)}
           className="pl-5 bg-transparent flex-grow outline-none text-sm text-gray-600 placeholder-gray-400"

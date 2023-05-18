@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/legacy/image";
-import Footer from "./Footer";
 
 function LargeCard({ img, title, description, buttonText }) {
   return (
@@ -20,11 +19,9 @@ function LargeCard({ img, title, description, buttonText }) {
 
         <button className="text-sm text-white bg-gray-900 px-4 py-2 rounded-lg mt-5">
           {buttonText}
-          {buttonText}
         </button>
       </div>
 
-      <Footer />
     </section>
   );
 }
